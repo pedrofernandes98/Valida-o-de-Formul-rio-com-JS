@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-be=r">
+<head>
+	<meta charset="UTF-8"> 
+	<title>Document</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/estilo.css">
+
+</head>
+<body>
+	
+	<div class="container"><!-- Da um espaçamento Grid Bootstrap -->
+		<fieldset>
+			<legend>Cadastro</legend>
+			<div class="form-group">
+				<label for="exampleInputNome1">Nome:</label>
+				<input id="nome" type="text" class="form-control" id="exampleInputNome1" placeholder="Escreva o seu nome">
+			<div class="form-group">
+				<lable for="InputSobrenome2">Sobrenome:</lable>
+				<input id="sobrenome" type="text" class="form-control" id="InputSobrenome2" placeholder="Escreva o seu sobrenome" name="">
+			</div>
+			
+			<!--Alertas-->
+			<div id="Msg" class="alert" role="alert">
+				A simple success alert—check it out!
+			</div>
+			
+ 
+			<hr>
+
+			<button class="btn btn-light" onclick="validaForm()">Enviar</button>
+		</fieldset>
+	</div>
+	
+
+	<script type="text/javascript" src="assets/js/script.js"></script>
+</body>
+</html>

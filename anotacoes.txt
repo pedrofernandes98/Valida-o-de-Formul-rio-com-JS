@@ -1,0 +1,44 @@
+Tipos de Dados Javascript
+
+- number --> Numérico: Possibilita a realização de operações matemáticas
+
+- string --> Cadeia de caracteres
+
+- booleano --> true or false
+
+- undefined -->
+
+- object --> document/window
+
+- function
+
+
+-----------------------------//-----------------------------
+
+Comandos:
+
+- Window Family
+
+window.alert('texto');
+
+var confirma = window.confirm('texto'); confirma = true or false
+
+var result = window.prompt('texto'); result = o que for digitado pelo user
+
+- Document Family
+
+document.getElementsByTagName('nome da tag')[0].value; --> retorna o valor da tag na posição 0
+
+
+document.getElementById('id do elemento').style.border;
+
+
+
+
+console.log() --> Retorna o valor indicado no console do navegagor quando a função for chamada
+
+element.classList.add('classe desejada'); --> Adiciona uma classe dinâmicamente no elemento
+
+------------//------------
+
+RegEx --> Regular Expressions
