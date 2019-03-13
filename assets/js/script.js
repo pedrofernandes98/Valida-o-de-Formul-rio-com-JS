@@ -1,41 +1,101 @@
-function validaForm()//Para que os comando dentro da função sejam executados, deve ser feita a chamada da função.
-{
-	var campoNome = document.getElementById('nome');
-	var campoSobrenome = document.getElementById('sobrenome');
-	var Msg = document.getElementById('Msg');
-	
 
-	campoNome.style.border = "";
-	campoSobrenome.style.border = "";
-	Msg.style.display = "none";
-	Msg.innerHTML = "";
-	
+//var campoNome = document.querySelector('#nome');
+//var campoSobrenome = document.querySelector('#sobrenome');
+//var campoTelefone = document.querySelector('#cel');
+var meusCampos = document.getElementsByTagName('input');
+var campoOperadora = document.querySelector('#operadora');
+var alerta = document.querySelector('#Msg');
+var ehSucesso = true;
 
 
-	if(campoNome.value == ""){
-		Msg.classList.remove("alert-success");
-		Msg.classList.add("alert-danger");//adiciona a classe dinâmicamente
-		campoNome.style.border = "2px solid red";
-		Msg.style.display = "block";
-		Msg.innerHTML = "Preencha o nome! <br>";
-	}
+//Funções para validar o campo de Telefone
 
+var meuObjeto;
+var minhaFunção;
 
-	if(campoSobrenome.value == ""){
-		Msg.classList.remove("alert-success");
-		Msg.classList.add("alert-danger");
-		campoSobrenome.style.border = "2px solid red";
-		Msg.style.display = "block";
-		Msg.innerHTML += "Preencha o sobrenome!";
-	}
+//------------------- Máscara para Telefone ---------------------------------
+function mascara(obj, func){
+	meuObjeto = obj;
+	minhaFunção = func;
 
-	if(campoNome.value != "" && campoSobrenome.value != ""){
-		Msg.classList.remove("alert-danger");
-		Msg.classList.add("alert-success");
-		Msg.style.display = "block";
-		Msg.innerHTML = "Os dados foram enviados com sucesso";
-		campoNome.value = "";
-		campoSobrenome.value = "";
-	}
+	setTimeout("executaMinhaFunção()",1)
 
+	//if(this.value.length > this.maxlenght){
+		//this.value = this.value.slice(0, this.maxlenght);
+	///}
 }
+
+function executaMinhaFunção(){
+	meuObjeto.value = minhaFunção(meuObjeto.value); //Neste ponto, o objeto receberá o valor formatado pela função de validação
+}
+
+function mascaraCelular(digito){
+	digito = digito.replace(/\D/g,""); // \D --> Pesquisa o que não é digito e troca por "" --> o 'g' serve para procurar todas as ocorrências 
+	digito = digito.replace(/^(\d{2})(\d)/g,"($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos 
+    digito = digito.replace(/(\d)(\d{4})$/,"$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
+    return digito ;
+}
+
+//----------- Validação dos Formulários ----------
+
+function validaForm(){
+	//console.log(3+4);
+
+	limpaValidacao();
+	ehSucesso = true;
+
+	//validaCampo(campoNome, "nome");
+	//validaCampo(campoSobrenome, "sobrenome");
+	//validaCampo(campoTelefone, "telefone");
+	for(var i=0; i<meusCampos.length;i++){
+		validaCampo(meusCampos[i], meusCampos[i].id);
+	}
+
+	validaCampo(campoOperadora, "operadora");
+	
+	if(ehSucesso){
+		alerta.classList.add('alert-success');
+		alerta.style.display = "block";
+		alerta.innerHTML = "Dados enviados com sucesso!";
+		for(var i=0;i<meusCampos.length;i++){
+			meusCampos[i].value = "";
+		}
+		campoOperadora.value = "";
+	}
+}
+
+
+
+
+function validaCampo(campo, nomeDoCampo){
+
+	if(campo.value == ""){
+		alerta.style.display = "block";
+		alerta.classList.add('alert-danger');
+		alerta.innerHTML += "Preencha o(a) " + nomeDoCampo + "<br>"//textContent;
+		campo.style.border = "solid 2px red";
+		ehSucesso = false;
+	}
+}
+
+function limpaValidacao(){
+	
+	for(var i=0;i<meusCampos.length;i++){
+		meusCampos[i].style.border = "";
+	}
+	campoOperadora.style.border = "";
+
+	//campoNome.style.border = "";
+	//campoSobrenome.style.border = "";
+
+	alerta.innerHTML = "";
+	alerta.style.display = "none";
+	alerta.classList.remove('alert-danger', 'alert-success');
+}
+
+//var meus_inputs = document.getElementsByTagName('input');
+
+	//for(var i=0;i<meus_inputs.length;i++){
+	//	meus_inputs[i].style.border = "";
+	//}
+
